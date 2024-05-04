@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Assistant AI</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Set your desired background color */
+      }
+      #nav-bar {
+        background-color: #020202;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px; /* Optional: Adjust the padding as needed */
+        
+      }
+      .title-container {
+        text-align: left;
+      }
+      .title {
+        color: white;
+        margin-left: 20px ;
+        margin-bottom: 30px;
+        
+      }
+      #nav-bar img {
+        order: -1; /* Place the logo at the beginning */
+      }
+      .logo {
+        order: -1;  /* Moves the logo to the leftmost position */
+      }
+  
+      #nav-bar a {
+        color: #fff;
+        text-decoration: none;
+        margin:15px;
+        font-size: 18px;
+        margin-right: 70px;
+        margin-left: 70px;
+      }
+        .container {
+            max-width: 800px; /* Adjust max-width as needed */
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .back-button {
+            margin-bottom: 20px;
+          }
+          .player-image {
+            width: 100%;
+            height: auto; /* Ensures image aspect ratio is maintained */
+            max-height: 50vh; /* Maximum height for mobile view */
+            object-fit: cover; /* Prevents image distortion */
+          }
+          .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+          }
+          .control-button {
+            margin: 0 10px;
+            cursor: pointer;
+          }
+      
+      @media (max-width: 768px) {
+        #nav-bar {
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 10px;
+        }
+        #nav-bar .d-flex {
+          flex-direction: row;
+          margin-top: 10px;
+        }
+        #nav-bar a {
+            margin: 0 10px;
+        }
+    }
+  
+   
+  </style>
+</head>
+<body style="background-color: #020202;">
+  <!-- Navigation Bar -->
+  <div class="d-flex justify-content-between align-items-center px-3 fixed-top bg-dark" id="nav-bar">
+    <div class="d-flex align-items-center">
+        <img src="{% static 'img/logo2.png' %}" alt="Your Logo" width="45" height="35">
+    </div>
+    <div class="d-flex">
+        <a href="/homer" class="mx-2"><img src="{% static 'img/homr.png' %}" alt="Home" width="28" height="28"></a>
+        <a href="/account" class="mx-2"><img src="{% static 'img/account.jpg' %}" alt="Account" width="28" height="28"></a>
+        <a href="/log" class="mx-2"><img src="{% static 'img/logout-icon.jpg' %}" alt="Logout" width="30" height="30"></a>
+
+    </div>
+</div>
+<br><br><br>
+<!-- Content -->
+<div class="container">
+    <!-- Back Button -->
+    <a href="/homer" class="back-button">&lt; Back</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   <!-- Player Image -->
+
+
+  <img src="{% static image_url %}" alt="Player Image" class="player-image">
+  <br>
+  <br>
+  <br>
+  <!-- Controls -->
+  <div class="controls">
+    <button class="control-button" id="play-song">Play</button>
+    <button class="control-button" id="pause-song">Pause</button>
+  </div>
+
+  <audio id="audio-player" style="display: none;">
+    <source src="{% static song_url %}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+<script>
+  const playButton = document.getElementById('play-song');
+  const pauseButton = document.getElementById('pause-song');
+  const audioPlayer = document.getElementById('audio-player');
+
+  // Add event listeners to the play and pause buttons
+  playButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    audioPlayer.play();
+  });
+
+  pauseButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    audioPlayer.pause();
+  });
+</script>
+
+</body>
+</html>

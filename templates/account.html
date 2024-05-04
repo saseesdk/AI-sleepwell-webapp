@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Assistant AI</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Set your desired background color */
+      }
+      #nav-bar {
+        background-color: #020202;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px; /* Optional: Adjust the padding as needed */
+        
+      }
+      .title-container {
+        text-align: left;
+      }
+      .title {
+        color: white;
+        margin-left: 20px ;
+        margin-bottom: 10px;
+        
+      }
+      #nav-bar img {
+        order: -1; /* Place the logo at the beginning */
+      }
+      .logo {
+        order: -1;  /* Moves the logo to the leftmost position */
+      }
+  
+      #nav-bar a {
+        color: #fff;
+        text-decoration: none;
+        margin:15px;
+        font-size: 18px;
+        margin-right: 70px;
+        margin-left: 70px;
+      }
+        .container {
+            max-width: 800px; /* Adjust max-width as needed */
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .back-button {
+            margin-bottom: 20px;
+          }
+          .player-image {
+            width: 100%;
+            height: auto; /* Ensures image aspect ratio is maintained */
+            max-height: 50vh; /* Maximum height for mobile view */
+            object-fit: cover; /* Prevents image distortion */
+          }
+          .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+          }
+          .control-button {
+            margin: 0 10px;
+            cursor: pointer;
+          }
+          .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+        
+          .image-container {
+            width: 60%; /* Image takes 60% of the screen width */
+            margin: 0 auto; /* Center the image horizontally */
+            text-align: center; /* Center the image inside the container */
+        }
+        
+        .image-container img {
+            width: 100%; /* Make sure the image fills the container */
+            height: auto; /* Maintain aspect ratio */
+        }
+        
+          .caption {
+            margin-top: 5px;
+            color: #fff;
+            font-size: 14px;
+          }
+          .title-container {
+            text-align: left;
+          }
+          body {
+            font-family: Arial, sans-serif;
+        }
+        .label {
+            width: 100%;
+            padding: 10px;
+            background-color: #161616;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #f8f9fa;
+        }
+        .dropdown {
+            display: none;
+            padding: 10px;
+        }
+        .dropdown img {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+        h2{
+            color: #f8f9fa;
+        }
+        
+        
+        .title.white-text {
+            color: white; /* Set text color to white */
+        }
+        
+        .title.black-text {
+            color: black; /* Set text color to black */
+        }
+          @media (min-width: 768px) {
+            .image-container {
+              width: 33.33%; /* Three images per row on laptop */
+            }
+          }
+          @media (min-width: 768px) {
+            .dropdown {
+              width: 50%;
+            }
+          }
+      @media (max-width: 768px) {
+        #nav-bar {
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 10px;
+        }
+        #nav-bar .d-flex {
+          flex-direction: row;
+          margin-top: 10px;
+        }
+        #nav-bar a {
+            margin: 0 10px;
+        }
+    }
+    p{
+        color: #f8f9fa;
+    }
+    h3 {
+        color: #f8f9fa;
+        font-weight: normal; /* Remove bold style from h2 */
+        margin: 0; /* Reset margin */
+        margin-bottom: 0px; /* Decrease line spacing */
+        letter-spacing: 2px;
+       
+    }
+  
+   
+  </style>
+  <title>Greeting</title>
+</head>
+<body style="background-color: #020202;">
+  <!-- Navigation Bar -->
+  <div class="d-flex justify-content-between align-items-center px-3 fixed-top bg-dark" id="nav-bar">
+    <div class="d-flex align-items-center">
+        <img src="{% static 'img/logo2.png' %}" alt="Your Logo" width="45" height="35">
+    </div>
+    <div class="d-flex">
+        <a href="/homer" class="mx-2"><img src="{% static 'img/homr.png' %}" alt="Home" width="28" height="28"></a>
+        <a href="#" class="mx-2"><img src="{% static 'img/account.jpg' %}" alt="Account" width="28" height="28"></a>
+        <a href="/log" class="mx-2"><img src="{% static 'img/logout-icon.jpg' %}" alt="Logout" width="30" height="30"></a>
+    </div>
+  </div>
+  <br>
+
+  <div class="image-container">
+    <img src="{% static 'img/deer.jpg' %}" alt="Your Image">
+</div>
+<div class="title-container">
+    <h3 class="title white-text" style="padding-left: 130px;">Hey there</h3>
+    <h3 class="title white-text" id="greeting" style="padding-left: 95px;"></h3>
+</div>
+  <br>
+  <div class="title-container">
+    <h2 class="title">Account</h2>
+</div>
+<!--add more-->
+<div class="container">
+    <ul style="list-style-type: none; padding: 0; margin-top: 0;">
+        
+        <li style="margin-bottom: 10px;"><a href="#" style="display: block; padding: 10px 0; border-bottom: 1px solid #ccc; text-decoration: none; color: #fff; font-size: 18px;">Change Password</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="display: block; padding: 10px 0; border-bottom: 1px solid #ccc; text-decoration: none; color: #fff; font-size: 18px;">Logout</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="display: block; padding: 10px 0; text-decoration: none; color: #fff; font-size: 18px;">Help & Support</a></li>
+    </ul>
+</div>
+  
+
+  <script>
+    function getGreeting() {
+      var now = new Date();
+      var hour = now.getHours();
+      var greeting;
+
+      if (hour < 12) {
+        greeting = "Good morning!";
+      } else if (hour < 18) {
+        greeting = "Good afternoon!";
+      } else {
+        greeting = "Good evening!";
+      }
+
+      document.getElementById("greeting").innerText = greeting;
+    }
+
+    // Call the function to display the greeting
+    window.onload = getGreeting;
+
+  </script>
+
+</body>
+
+
+</html>

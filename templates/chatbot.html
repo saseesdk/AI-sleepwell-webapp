@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Assistant AI</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Set your desired background color */
+      }
+      #nav-bar {
+        background-color: #020202;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px; /* Optional: Adjust the padding as needed */
+        
+      }
+      .title-container {
+        text-align: left;
+      }
+      .title {
+        color: white;
+        margin-left: 20px ;
+        margin-bottom: 30px;
+        
+      }
+      #nav-bar img {
+        order: -1; /* Place the logo at the beginning */
+      }
+      .logo {
+        order: -1;  /* Moves the logo to the leftmost position */
+      }
+  
+      #nav-bar a {
+        color: #fff;
+        text-decoration: none;
+        margin:15px;
+        font-size: 18px;
+        margin-right: 70px;
+        margin-left: 70px;
+      }
+        .container {
+            max-width: 800px; /* Adjust max-width as needed */
+            margin: 0 auto;
+            padding: 20px;
+            color: #f8f9fa;
+          }
+          .back-button {
+            margin-bottom: 20px;
+          }
+          .player-image {
+            width: 100%;
+            height: auto; /* Ensures image aspect ratio is maintained */
+            max-height: 50vh; /* Maximum height for mobile view */
+            object-fit: cover; /* Prevents image distortion */
+          }
+          .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+          }
+          .control-button {
+            margin: 0 10px;
+            cursor: pointer;
+          }
+          .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+        
+          .image-container {
+            width: 50%; /* Two images per row on mobile */
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+          }
+        
+          .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+          }
+        
+          .caption {
+            margin-top: 5px;
+            color: #fff;
+            font-size: 14px;
+          }
+          .title-container {
+            text-align: left;
+          }
+          body {
+            font-family: Arial, sans-serif;
+        }
+        .label {
+            width: 100%;
+            padding: 10px;
+            background-color: #161616;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #f8f9fa;
+        }
+        .dropdown {
+            display: none;
+            padding: 10px;
+        }
+        .dropdown img {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .fixed-bottom {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 0px;
+          background-color: #c0bcbc; /* Set the background color as needed */
+          border-top: 1px solid #ddd; /* Add a border at the top */
+          z-index: 1000; /* Set a high z-index to ensure it's on top of other content */
+        }
+        .image-container {
+          width: 60%; /* Image takes 60% of the screen width */
+          margin: 0 auto; /* Center the image horizontally */
+          text-align: center; /* Center the image inside the container */
+      }
+      
+      .image-container img {
+          width: 100%; /* Make sure the image fills the container */
+          height: auto; /* Maintain aspect ratio */
+      }
+        
+        
+          @media (min-width: 768px) {
+            .image-container {
+              width: 33.33%; /* Three images per row on laptop */
+            }
+          }
+          @media (min-width: 768px) {
+            .dropdown {
+              width: 50%;
+            }
+          }
+      @media (max-width: 768px) {
+        #nav-bar {
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 10px;
+        }
+        #nav-bar .d-flex {
+          flex-direction: row;
+          margin-top: 10px;
+        }
+        #nav-bar a {
+            margin: 0 10px;
+        }
+    }
+  
+   
+  </style>
+</head>
+<body style="background-color: #020202;">
+  <!-- Navigation Bar -->
+  <div class="d-flex justify-content-between align-items-center px-3 fixed-top bg-dark" id="nav-bar">
+    <div class="d-flex align-items-center">
+        <img src="{% static 'img/logo2.png' %}" alt="Your Logo" width="45" height="35">
+    </div>
+    <div class="d-flex">
+        <a href="/homer" class="mx-2"><img src="{% static 'img/homr.png' %}" alt="Home" width="28" height="28"></a>
+        <a href="/account" class="mx-2"><img src="{% static 'img/account.jpg' %}" alt="Account" width="28" height="28"></a>
+        <a href="/log" class="mx-2"><img src="{% static 'img/logout-icon.jpg' %}" alt="Logout" width="30" height="30"></a>
+    </div>
+  </div>
+  
+  <div class="image-container">
+    <img src="{% static 'img/deer.jpg' %}" alt="Your Image">
+</div>
+<div class="title-container">
+    <h3 class="title white-text" style="padding-left: 130px; letter-spacing: 1px;">Hey there</h3>
+    <h3 class="title white-text" id="greeting" style="padding-left: 95px; letter-spacing: 2px ;"></h3>
+</div>
+  <div class="container mt-5">
+    <div id="chat-container" class="container" style="height: 300px; overflow-y: auto;">
+        {% for message in messages %}
+            {% if message.user %}
+                <p><strong>You:</strong> {{ message.content }}</p>
+            {% else %}
+                <p><strong>Bot:</strong> {{ message.content }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>  
+    <!--action="{% url 'chatbot_process' %}"-->
+    <div class="fixed-bottom">  
+      <div class="fixed-bottom">
+        <form method="post" action="{% url 'chatbot_process' %}" >
+          {% csrf_token %}
+          <div class="input-group" style="width: 100%;">
+              <input type="text" id="message" class="form-control" name="user_input" style="width: 75%; border: none; padding: 10px; font-size: large;" placeholder="Type your message here..." aria-label="Type your message here..." aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="width: 19%; padding: 10px; font-size: large; background-color: #407d3a; color: #d8d5d5; font-weight: bold;">SEND</button>
+          </div>
+      </form>
+      
+      </div>
+      
+    </div>
+    
+</div>
+
+<script>
+  // Scroll to the bottom of the chat container
+  function scrollToBottom() {
+      var chatContainer = document.getElementById("chat-container");
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+
+  // Call scrollToBottom when the page loads to ensure the chat is scrolled to the bottom
+  window.onload = scrollToBottom;
+
+  function getGreeting() {
+    var now = new Date();
+    var hour = now.getHours();
+    var greeting;
+
+    if (hour < 12) {
+      greeting = "Good morning!";
+    } else if (hour < 18) {
+      greeting = "Good afternoon!";
+    } else {
+      greeting = "Good evening!";
+    }
+
+    document.getElementById("greeting").innerText = greeting;
+  }
+
+  // Call the function to display the greeting
+  window.onload = getGreeting;
+
+
+  // Optional: You can also call scrollToBottom whenever a new message is added to the chat
+  // For example, after submitting the form
+</script>
+    
+</body>
+</html>

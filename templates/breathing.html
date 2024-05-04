@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Assistant AI</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Set your desired background color */
+      }
+      #nav-bar {
+        background-color: #020202;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px; /* Optional: Adjust the padding as needed */
+        
+      }
+      .title-container {
+        text-align: left;
+      }
+      .title {
+        color: white;
+        margin-left: 20px ;
+        margin-bottom: 30px;
+        
+      }
+      #nav-bar img {
+        order: -1; /* Place the logo at the beginning */
+      }
+      .logo {
+        order: -1;  /* Moves the logo to the leftmost position */
+      }
+  
+      #nav-bar a {
+        color: #fff;
+        text-decoration: none;
+        margin:15px;
+        font-size: 18px;
+        margin-right: 70px;
+        margin-left: 70px;
+      }
+        .container {
+            max-width: 800px; /* Adjust max-width as needed */
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .back-button {
+            margin-bottom: 20px;
+          }
+          .player-image {
+            width: 100%;
+            height: auto; /* Ensures image aspect ratio is maintained */
+            max-height: 50vh; /* Maximum height for mobile view */
+            object-fit: cover; /* Prevents image distortion */
+          }
+          .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+          }
+          .control-button {
+            margin: 0 10px;
+            cursor: pointer;
+          }
+          .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+        
+          .image-container {
+            width: 50%; /* Two images per row on mobile */
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+          }
+        
+          .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+          }
+        
+          .caption {
+            margin-top: 5px;
+            color: #fff;
+            font-size: 14px;
+          }
+          .title-container {
+            text-align: left;
+          }
+          body {
+            font-family: Arial, sans-serif;
+        }
+        .label {
+            width: 100%;
+            padding: 10px;
+            background-color: #161616;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #f8f9fa;
+        }
+        .dropdown {
+            display: none;
+            padding: 10px;
+        }
+        .dropdown img {
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+          @media (min-width: 768px) {
+            .image-container {
+              width: 33.33%; /* Three images per row on laptop */
+            }
+          }
+          @media (min-width: 768px) {
+            .dropdown {
+              width: 50%;
+            }
+          }
+      @media (max-width: 768px) {
+        #nav-bar {
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 10px;
+        }
+        #nav-bar .d-flex {
+          flex-direction: row;
+          margin-top: 10px;
+        }
+        #nav-bar a {
+            margin: 0 10px;
+        }
+    }
+  
+   
+  </style>
+</head>
+<body style="background-color: #020202;">
+  <!-- Navigation Bar -->
+  <div class="d-flex justify-content-between align-items-center px-3 fixed-top bg-dark" id="nav-bar">
+    <div class="d-flex align-items-center">
+        <img src="{% static 'img/logo2.png' %}" alt="Your Logo" width="45" height="35">
+    </div>
+    <div class="d-flex">
+        <a href="/homer" class="mx-2"><img src="{% static 'img/homr.png' %}" alt="Home" width="28" height="28"></a>
+        <a href="/account" class="mx-2"><img src="{% static 'img/account.jpg' %}" alt="Account" width="28" height="28"></a>
+        <a href="/log" class="mx-2"><img src="{% static 'img/logout-icon.jpg' %}" alt="Logout" width="30" height="30"></a>
+    </div>
+  </div>
+  <br>
+  <div class="title-container">
+    <h2 class="title">Breathing Excercises</h2>
+  </div>
+ 
+<!-- Label 1 -->
+<div class="label" onclick="toggleDropdown('dropdown1')">Pursed-Lip Breathing</div>
+<div id="dropdown1" class="dropdown">
+    <img src="{% static 'img/01_Exercise.png' %}" alt="Image 1">
+</div>
+
+<!-- Label 2 -->
+<div class="label" onclick="toggleDropdown('dropdown2')">Yogic Deep Breathing</div>
+<div id="dropdown2" class="dropdown">
+    <img src="{% static 'img/02_Exercise.png' %}" alt="Image 3">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown3')">Alternate Nostril Breathing</div>
+<div id="dropdown3" class="dropdown">
+    <img src="{% static 'img/03_Exercise.png' %}" alt="Image 5">
+</div>
+
+
+<div class="label" onclick="toggleDropdown('dropdown4')">Box Breathing</div>
+<div id="dropdown4" class="dropdown">
+    <img src="{% static 'img/04_Exercise.png' %}" alt="Image 6">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown5')">Long Exhale Breathing</div>
+<div id="dropdown5" class="dropdown">
+    <img src="{% static 'img/05_Exercise.png' %}" alt="Image 5">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown6')">Belly Breathing</div>
+<div id="dropdown6" class="dropdown">
+    <img src="{% static 'img/06_Exercise.png' %}" alt="Image 5">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown7')">Lions Breath</div>
+<div id="dropdown7" class="dropdown">
+    <img src="{% static 'img/07_Exercise.png' %}" alt="Image 5">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown8')">Mindfulness Breathing</div>
+<div id="dropdown8" class="dropdown">
+    <img src="{% static 'img/08_Exercise.png' %}" alt="Image 5">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown9')">Resonance Frequency Breathing</div>
+<div id="dropdown9" class="dropdown">
+    <img src="{% static 'img/09_Exercise.png' %}" alt="Image 5">
+</div>
+
+<div class="label" onclick="toggleDropdown('dropdown10')">Victorious Breathing</div>
+<div id="dropdown10" class="dropdown">
+    <img src="{% static 'img/10_Exercise.png' %}" alt="Image 5">
+</div>
+
+<script>
+    // JavaScript function to toggle dropdown visibility
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      if (dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+      } else {
+          dropdown.style.display = "block";
+      }
+    }
+
+    // Open all dropdowns initially
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(function(dropdown) {
+        dropdown.style.display = "block";
+      });
+    });
+  </script>
+    
+    
+</body>
+</html>
